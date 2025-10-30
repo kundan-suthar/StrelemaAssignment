@@ -5,7 +5,7 @@ import LanguageDropdown from "./LanguageDropdown"
 
 const Navigation = () => {
     return (
-        <nav className="my-4 py-2 flex justify-between items-center">
+        <nav className=" py-4 flex justify-between items-center">
             <div>
                 <Link to={'/'}>
                     <p className="text-3xl font-logo">Travel.ly</p>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Destinations = () => {
     return (
-        <div>
+        <div className='h-dvh'>
             <h1>Destinations Page</h1>
         </div>
     )
