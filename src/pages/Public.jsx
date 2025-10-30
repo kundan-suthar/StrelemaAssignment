@@ -1,10 +1,11 @@
+import HeroSection from "../components/HeroSection"
 import Navigation from "../components/Navigation"
 
 
 const Public = () => {
     return (
-        <div className="container ">
-
+        <div className=" ">
+            <HeroSection />
         </div>
     )
 }
