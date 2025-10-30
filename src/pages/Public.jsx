@@ -1,9 +1,10 @@
+import Navigation from "../components/Navigation"
 
 
 const Public = () => {
     return (
-        <div>
-            Public Page
+        <div className="container ">
+
         </div>
     )
 }

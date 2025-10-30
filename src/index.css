@@ -1,1 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  --font-logo: "DynaPuff", system-ui;
+  --font-nav: "Google Sans Code", monospace;
+  --color-nav: #212832;
+}
+
+@layer base {
+  .container {
+    @apply mx-auto px-4 max-w-7xl;
+  }
+}
