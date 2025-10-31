@@ -1,3 +1,4 @@
+import Destinations from "../components/Destinations"
 import HeroSection from "../components/HeroSection"
 import Navigation from "../components/Navigation"
 import Services from "../components/Services"
@@ -5,9 +6,10 @@ import Services from "../components/Services"
 
 const Public = () => {
     return (
-        <div className="w-full h-[2000px] ">
+        <div className="w-full h-[3000px] ">
             <HeroSection />
             <Services />
+            <Destinations />
         </div>
     )
 }

@@ -4,7 +4,7 @@ import { services } from "../constants/constants";
 import ServiceCard from "./ServiceCard";
 const Services = () => {
     return (
-        <section>
+        <section className="pb-20">
 
             <div className="relative mb-20">
                 <h2 className='text-para font-semibold font-heroPara text-center text-2xl '>CATEGORY</h2>
