@@ -8,7 +8,7 @@ import london from "../assets/london.jpg";
 import europe from "../assets/europe.png";
 
 import axon from "../assets/axon.png"
-import Jetstar from "../assets/Jetstar.png"
+import Jetstar from "../assets/JetStar.png"
 import Expedia from "../assets/Expedia.png"
 import Qantas from "../assets/Qantas.png"
 import iitalia from "../assets/iitalia.png"
