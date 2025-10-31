@@ -13,6 +13,7 @@
   --color-para: #5e6282;
   --color-btn: #f2994a;
   --color-playBtn: #df6951;
+  --color-custom-highlight: #df6951;
 }
 
 @layer base {
