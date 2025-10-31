@@ -59,3 +59,28 @@ export const destinations = [
         imageUrl: europe
     },
 ];
+
+
+export const TESTIMONIALS_DATA = [
+    {
+        id: 1,
+        quote: "On the Windows talking pointed pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.",
+        name: 'Mike Taylor',
+        title: 'Lahore, Pakistan',
+        avatarUrl: 'https://randomuser.me/api/portraits/men/32.jpg',
+    },
+    {
+        id: 2,
+        quote: "A truly outstanding experience from start to finish. The team's professionalism and attention to detail were second to none. Highly recommended!",
+        name: 'Chris Thomas',
+        title: 'CEO of Red Button',
+        avatarUrl: 'https://randomuser.me/api/portraits/men/12.jpg',
+    },
+    {
+        id: 3,
+        quote: "Working with them was a game-changer for our business. Their innovative solutions helped us achieve our goals faster than we ever thought possible.",
+        name: 'Jane Cooper',
+        title: 'Marketing Director, Basecamp',
+        avatarUrl: 'https://randomuser.me/api/portraits/women/25.jpg',
+    },
+];
