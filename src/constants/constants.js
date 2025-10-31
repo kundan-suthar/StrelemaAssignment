@@ -7,6 +7,12 @@ import rome from "../assets/rome.png";
 import london from "../assets/london.jpg";
 import europe from "../assets/europe.png";
 
+import axon from "../assets/axon.png"
+import Jetstar from "../assets/Jetstar.png"
+import Expedia from "../assets/Expedia.png"
+import Qantas from "../assets/Qantas.png"
+import iitalia from "../assets/iitalia.png"
+
 export const services = [
     {
         icon: WeatherIcon,
@@ -82,5 +88,61 @@ export const TESTIMONIALS_DATA = [
         name: 'Jane Cooper',
         title: 'Marketing Director, Basecamp',
         avatarUrl: 'https://randomuser.me/api/portraits/women/25.jpg',
+    },
+];
+
+
+
+
+export const LOGOS = [
+    {
+        id: 1,
+        name: 'Axon Airlines',
+        image: axon,
+    },
+    {
+        id: 2,
+        name: 'Jetstar',
+        image: Jetstar,
+    },
+    {
+        id: 3,
+        name: 'Expedia',
+        image: Expedia,
+    },
+    {
+        id: 4,
+        name: 'Qantas',
+        image: Qantas,
+    },
+    {
+        id: 5,
+        name: 'Alitalia',
+        image: iitalia,
+    },
+    {
+        id: 6,
+        name: 'Axon Airlines',
+        image: axon,
+    },
+    {
+        id: 7,
+        name: 'Jetstar',
+        image: Jetstar,
+    },
+    {
+        id: 8,
+        name: 'Expedia',
+        image: Expedia,
+    },
+    {
+        id: 9,
+        name: 'Qantas',
+        image: Qantas,
+    },
+    {
+        id: 10,
+        name: 'Alitalia',
+        image: iitalia,
     },
 ];

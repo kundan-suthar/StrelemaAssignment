@@ -53,7 +53,7 @@ const Testimonials = () => {
                     ))}
                 </div>
 
-                <div className="absolute right-0 lg:right-[-20px] top-1/2 -translate-y-1/2 flex flex-col gap-3 z-40">
+                <div className="absolute right-0 lg:-right-5 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-40">
                     <button
                         onClick={handlePrev}
                         className="p-2 rounded-full text-gray-400 bg-white shadow-md hover:bg-gray-100 hover:text-gray-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"

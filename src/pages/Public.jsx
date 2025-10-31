@@ -1,4 +1,5 @@
 import BookSteps from "../components/BookSteps"
+import ClientsMarquee from "../components/ClientsMarquee"
 import Destinations from "../components/Destinations"
 import HeroSection from "../components/HeroSection"
 import Navigation from "../components/Navigation"
@@ -14,6 +15,7 @@ const Public = () => {
             <Destinations />
             <BookSteps />
             <Testimonials />
+            <ClientsMarquee />
         </div>
     )
 }
