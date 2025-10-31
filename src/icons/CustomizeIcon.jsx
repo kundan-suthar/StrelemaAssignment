@@ -1,7 +1,7 @@
 
 const CustomizeIcon = () => {
     return (
-        <div className=" w-20 h-20">
+        <div className="flex justify-center items-center w-20 h-20">
 
             <svg width="77" height="66" viewBox="0 0 77 66" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M27 48C27 57.9411 35.0589 66 45 66L72 66C74.7614 66 77 63.7614 77 61L77 27C77 21.4772 72.5228 17 67 17L32 17C29.2386 17 27 19.2386 27 22L27 48Z" fill="#FFF1DA" />

@@ -1,3 +1,4 @@
+import BookSteps from "../components/BookSteps"
 import Destinations from "../components/Destinations"
 import HeroSection from "../components/HeroSection"
 import Navigation from "../components/Navigation"
@@ -10,6 +11,7 @@ const Public = () => {
             <HeroSection />
             <Services />
             <Destinations />
+            <BookSteps />
         </div>
     )
 }
