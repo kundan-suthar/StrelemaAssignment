@@ -2,7 +2,7 @@ import BookSteps from "../components/BookSteps"
 import ClientsMarquee from "../components/ClientsMarquee"
 import Destinations from "../components/Destinations"
 import HeroSection from "../components/HeroSection"
-import Navigation from "../components/Navigation"
+import Newsletter from "../components/Newsletter"
 import Services from "../components/Services"
 import Testimonials from "../components/Testimonials"
 
@@ -16,6 +16,7 @@ const Public = () => {
             <BookSteps />
             <Testimonials />
             <ClientsMarquee />
+            <Newsletter />
         </div>
     )
 }
