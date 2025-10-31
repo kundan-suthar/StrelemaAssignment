@@ -2,7 +2,7 @@ import React from 'react'
 
 const Bookings = () => {
     return (
-        <div>
+        <div className='h-dvh'>
             Booking
         </div>
     )

@@ -11,12 +11,12 @@ const Navigation = () => {
                     <p className="text-3xl font-logo ">Travel.ly</p>
                 </Link>
             </div> */}
-            <div className="relative inline-block">
+            <Link to={'/'} className="relative inline-block">
                 <h2 className="relative text-4xl font-logo text-gray-900 z-10 
                   after:content-[url('/images/logo.svg')] after:absolute   after:inset-0  ">
                     Travel.ly
                 </h2>
-            </div>
+            </Link>
             <div className="flex gap-14">
                 <NavLink
                     to="/dest"

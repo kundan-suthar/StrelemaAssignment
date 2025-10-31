@@ -2,7 +2,7 @@ import React from 'react'
 
 const Flights = () => {
     return (
-        <div>
+        <div className='h-dvh'>
             Flights Coming Soon
         </div>
     )
