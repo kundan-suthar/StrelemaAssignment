@@ -6,10 +6,16 @@ import LanguageDropdown from "./LanguageDropdown"
 const Navigation = () => {
     return (
         <nav className=" py-4 flex justify-between items-center">
-            <div>
-                <Link to={'/'}>
-                    <p className="text-3xl font-logo">Travel.ly</p>
+            {/* <div>
+                <Link to={'/'} className="after:content-[url('/images/logo.svg')] after:absolute   after:inset-0  ">
+                    <p className="text-3xl font-logo ">Travel.ly</p>
                 </Link>
+            </div> */}
+            <div className="relative inline-block">
+                <h2 className="relative text-4xl font-logo text-gray-900 z-10 
+                  after:content-[url('/images/logo.svg')] after:absolute   after:inset-0  ">
+                    Travel.ly
+                </h2>
             </div>
             <div className="flex gap-14">
                 <NavLink

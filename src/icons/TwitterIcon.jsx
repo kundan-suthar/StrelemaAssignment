@@ -20,7 +20,7 @@ const TwitterIcon = () => {
                     </filter>
                 </defs>
             </svg>
-            fillRule
+
         </div>
     )
 }

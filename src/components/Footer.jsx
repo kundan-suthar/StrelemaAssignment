@@ -32,7 +32,7 @@ const Footer = () => {
 
                         {/* Brand Info */}
                         <div className="lg:col-span-4">
-                            <div className="relative inline-block after:content-[url('/logo.svg')] after:absolute after:-top-3 after:-right-5 after:w-8 after:h-8 after:opacity-80">
+                            <div className="relative inline-block after:content-[url('/images/logo.svg')] after:absolute   after:inset-0 after:h-7 ">
                                 <h2 className="text-4xl font-extrabold text-gray-900 relative z-10">Travello</h2>
                             </div>
                             <p className="mt-4 text-para font-semibold text-sm max-w-xs">
