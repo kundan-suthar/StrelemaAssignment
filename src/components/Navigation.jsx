@@ -11,7 +11,7 @@ const Navigation = () => {
     const handleLogout = () => {
         setAuth(null); // clear auth context
         localStorage.removeItem("auth"); // if you store it in localStorage
-        navigate("/login");
+        navigate("/");
     };
 
     return (
@@ -80,7 +80,7 @@ const Navigation = () => {
             </div>
             <div className="flex items-center gap-12">
                 {/* If not logged in */}
-                {!auth ? (
+                {!auth?.user ? (
                     <>
                         <NavLink
                             to="/login"
