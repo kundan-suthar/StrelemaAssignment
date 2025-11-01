@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Lock, Phone } from 'lucide-react';
 import axios from '../api/axios';
-import { useAuth } from '../Context/useContext';
+import { useAuth } from '../hooks/useContext';
 import { useNavigate } from 'react-router';
 const LOGIN_URL = "/api/auth/login"
 const LoginCard = () => {
