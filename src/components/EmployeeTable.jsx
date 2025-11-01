@@ -1,23 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import { SearchIcon, PlusIcon, FilterIcon, EyeIcon, EditIcon, TrashIcon } from './icons';
 import Pagination from './Pagination';
 import { Edit, Eye, Filter, Plus, Search, Trash } from 'lucide-react';
+import { useAuth } from '../hooks/useContext';
+import axios from '../api/axios';
+import TableSkeleton from './TableSkeleton';
 
-const mockEmployees = [
-    { id: '1', name: 'Priyanka Raut', initials: 'P', employeeId: '345321231', department: 'Design', designation: 'UI/UX Designer', status: 'Permanent' },
-    { id: '2', name: 'Saurabh Patil', initials: 'S', employeeId: '987890345', department: 'Developement', designation: 'PHP Developer', status: 'Permanent' },
-    { id: '3', name: 'Violet Cowan', avatarUrl: 'https://picsum.photos/seed/violet/40/40', initials: 'VC', employeeId: '453367122', department: 'Sales', designation: 'Sales Manager', status: 'Permanent' },
-    { id: '4', name: 'Aadesh Rathod', avatarUrl: 'https://picsum.photos/seed/aadesh/40/40', initials: 'AR', employeeId: '345321231', department: 'Sales', designation: 'BDM', status: 'Permanent' },
-    { id: '5', name: 'Pratham Patne', avatarUrl: 'https://picsum.photos/seed/pratham/40/40', initials: 'PP', employeeId: '453677881', department: 'Design', designation: 'Design Lead', status: 'Permanent' },
-    { id: '6', name: 'Rushi Raut', avatarUrl: 'https://picsum.photos/seed/rushi/40/40', initials: 'RR', employeeId: '009918765', department: 'Developement', designation: 'Python Developer', status: 'Permanent' },
-    { id: '7', name: 'Om Shinde', avatarUrl: 'https://picsum.photos/seed/om/40/40', initials: 'OS', employeeId: '238870122', department: 'Developement', designation: 'Sr. UI Developer', status: 'Permanent' },
-    { id: '8', name: 'Sakshi Rayte', avatarUrl: 'https://picsum.photos/seed/sakshi/40/40', initials: 'SR', employeeId: '124335111', department: 'PM', designation: 'Project Manager', status: 'Permanent' },
-    { id: '9', name: 'Tushita Salunkhe', avatarUrl: 'https://picsum.photos/seed/tushita/40/40', initials: 'TS', employeeId: '435540099', department: 'HR', designation: 'HR Executive', status: 'Permanent' },
-    { id: '10', name: 'Mayuri Rane', avatarUrl: 'https://picsum.photos/seed/mayuri/40/40', initials: 'MR', employeeId: '009812890', department: 'Developement', designation: 'React JS Developer', status: 'Permanent' },
-    { id: '11', name: 'Suraj Pawar', avatarUrl: 'https://picsum.photos/seed/suraj/40/40', initials: 'SP', employeeId: '671190345', department: 'Developement', designation: 'Node JS', status: 'Permanent' },
-    { id: '12', name: 'Shivam Jagtap', avatarUrl: 'https://picsum.photos/seed/shivam/40/40', initials: 'SJ', employeeId: '091233412', department: 'BA', designation: 'Business Analyst', status: 'Permanent' },
-];
 
 // This helper component is defined outside EmployeeTable to prevent re-creation on every render.
 const EmployeeRow = ({ employee }) => (
@@ -61,15 +50,88 @@ const EmployeeRow = ({ employee }) => (
 
 
 const EmployeeTable = () => {
-    const [employees] = useState(mockEmployees);
+    const [employees, setEmployees] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [totalRecords, setTotalRecords] = useState(0);
+    const [totalPages, setTotalPages] = useState(null)
+    const { auth } = useAuth()
+    const EMP_URL = "/api/employees"
 
-    const totalRecords = employees.length;
-    const totalPages = Math.ceil(totalRecords / itemsPerPage);
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = employees.slice(indexOfFirstItem, indexOfLastItem);
+
+
+    const fetchEmployees = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const response = await axios.get(
+                `${EMP_URL}?page=${currentPage}&limit=${itemsPerPage}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${auth.accessToken}`
+                    }
+                }
+            );
+
+            const enhancedResponse = response.data.data.map((item, index) => ({
+                id: String(index + 1), // Add sequential id
+                name: item.name,
+                initials: item.name ? item.name.charAt(0).toUpperCase() : '',
+                employeeId: (Math.floor(Math.random() * 900000000) + 100000000).toString(), // random 9-digit ID
+                department: item.department,
+                designation: item.designation,
+                status: item.status
+            }));
+            setEmployees(enhancedResponse);
+            setTotalRecords(response.data.pagination.total);
+            setTotalPages(response.data.pagination.pages)
+        } catch (err) {
+
+            setError(err.response?.data?.message || 'Failed to fetch employees');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
+
+    useEffect(() => {
+        fetchEmployees();
+
+    }, [currentPage, itemsPerPage])
+
+    if (loading) return (
+        <div className="bg-white rounded-lg shadow-sm p-6">
+            <TableSkeleton />
+        </div>
+    );
+    if (error) return (
+        <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="text-center py-10">
+                <div className="text-red-500 text-xl mb-2">Error</div>
+                <p className="text-gray-600">{error}</p>
+                <button
+                    onClick={fetchEmployees}
+                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                >
+                    Try Again
+                </button>
+            </div>
+        </div>
+    );
+
+    if (!employees.length) return (
+        <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="text-center py-10">
+                <div className="text-gray-500 text-xl mb-2">No Employees Found</div>
+                <p className="text-gray-400">Try adding some employees or adjusting your filters</p>
+            </div>
+        </div>
+    );
+
 
     return (
         <div className="bg-white rounded-lg shadow-sm p-6">
@@ -114,7 +176,7 @@ const EmployeeTable = () => {
                         </tr>
                     </thead>
                     <tbody className="text-gray-600 text-sm font-light">
-                        {currentItems.map((employee) => (
+                        {employees.map((employee) => (
                             <EmployeeRow key={employee.id} employee={employee} />
                         ))}
                     </tbody>
