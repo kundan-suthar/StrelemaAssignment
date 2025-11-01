@@ -1,16 +1,47 @@
-# React + Vite
+# Interview Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the implementation for an interview assignment.  
+It demonstrates basic React concepts including routing, authentication handling, and protected routes.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features Implemented
 
-## React Compiler
+### 🔹 Routing
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Implemented using **React Router**.
+- Includes both **public** and **protected** routes.
 
-## Expanding the ESLint configuration
+### 🔹 Public Pages
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Public Page** — Accessible to all users.
+2. **Login Page** — For authentication using hardcoded credentials.
+
+### 🔹 Protected Pages
+
+1. **Dashboard** — Accessible only after successful login.
+
+### 🔹 State Management
+
+- Used **React Context API** to manage authentication state and persist login session.
+
+---
+
+## 🔮 Future Improvements
+
+- **Dark Mode:**  
+  Add theme switching functionality for better UI/UX customization.
+
+- **State Management with Redux:**  
+  Replace Context API with **Redux Toolkit** for scalability and cleaner global state management.
+
+---
+
+## 🛠️ Tech Stack
+
+- **React.js**
+- **React Router DOM**
+- **Tailwind CSS**
+- **Vite** (for development and build)
+
+---

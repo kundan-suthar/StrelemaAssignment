@@ -1,6 +1,18 @@
 import { Bell, ChevronDown, Menu, Search } from 'lucide-react'
+import { useState } from 'react';
+import { useAuth } from '../hooks/useContext';
 
 const DashHeader = ({ setSidebarOpen }) => {
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const { setAuth, setIsLoggedIn } = useAuth(); // Assuming you have these methods in your auth context
+
+    const handleLogout = () => {
+        setAuth({}); // Clear auth context
+        setIsLoggedIn(false); // Update logged-in state
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("accessToken");
+        // Redirect to login page if needed
+    };
     return (
         <header className="bg-white p-4 md:px-6 shadow-sm flex items-center justify-between">
             <div className="flex items-center">
@@ -38,9 +50,20 @@ const DashHeader = ({ setSidebarOpen }) => {
                         <p className="font-semibold text-gray-800 text-sm">Faisal Patani</p>
                         <p className="text-xs text-gray-500">HR Manager</p>
                     </div>
-                    <button className="text-gray-500 hover:text-gray-700">
+                    <button className="text-gray-500 hover:text-gray-700" onClick={() => setDropdownOpen(!dropdownOpen)}>
                         <ChevronDown className="w-5 h-5" />
                     </button>
+
+                    {dropdownOpen && (
+                        <div className="absolute right-0 top-16  mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+                            <button
+                                onClick={handleLogout}
+                                className="block w-full rounded-md text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </header>
