@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CalendarCheck, FileSpreadsheet, FileText, LayoutDashboard, Lightbulb, Moon, RefreshCcw, Settings, Sun, Users } from 'lucide-react';
 import StrelemaLogo from "../assets/StrelemaLogo.png";
+import { Link } from 'react-router';
 
 const NavItem = ({ icon, label, active }) => (
     <a
@@ -15,9 +16,9 @@ const NavItem = ({ icon, label, active }) => (
 
 const Logo = () => (
     <div className="flex items-center space-x-2  px-4">
-        <div className="p-2 rounded-md mb-3 w-36 h-20 hover:cursor-pointer">
+        <Link to="/" className="p-2 rounded-md mb-3 w-36 h-20 hover:cursor-pointer">
             <img src={StrelemaLogo} alt="strelema logo" className='object-contain w-44 ' />
-        </div>
+        </Link>
     </div>
 );
 

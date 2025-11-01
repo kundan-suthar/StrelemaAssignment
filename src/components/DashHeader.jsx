@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useContext';
 
 const DashHeader = ({ setSidebarOpen }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const { setAuth, setIsLoggedIn } = useAuth(); // Assuming you have these methods in your auth context
+    const { setAuth, setIsLoggedIn } = useAuth();
 
     const handleLogout = () => {
         setAuth({}); // Clear auth context
@@ -40,7 +40,7 @@ const DashHeader = ({ setSidebarOpen }) => {
 
                 </button>
 
-                <div className="flex rounded-md p-1 items-center space-x-3 border border-dashLight hover:cursor-pointer ">
+                <div className="flex rounded-md p-1 mr-7 items-center space-x-3 border border-dashLight hover:cursor-pointer ">
                     <img
                         src="https://picsum.photos/seed/faisal/40/40"
                         alt="User avatar"
@@ -50,8 +50,8 @@ const DashHeader = ({ setSidebarOpen }) => {
                         <p className="font-semibold text-gray-800 text-sm">Faisal Patani</p>
                         <p className="text-xs text-gray-500">HR Manager</p>
                     </div>
-                    <button className="text-gray-500 hover:text-gray-700" onClick={() => setDropdownOpen(!dropdownOpen)}>
-                        <ChevronDown className="w-5 h-5" />
+                    <button className="text-gray-500 hover:text-gray-700 hover:cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
+                        <ChevronDown className={`w-5 h-5 ${dropdownOpen ? "rotate-180" : ""}  duration-300  `} />
                     </button>
 
                     {dropdownOpen && (
