@@ -12,7 +12,7 @@ const Destinations = lazy(() => import("./pages/placeholders/Destinations"));
 const Hotels = lazy(() => import("./pages/placeholders/Hotels"));
 const Flights = lazy(() => import("./pages/placeholders/Flights"));
 const Bookings = lazy(() => import("./pages/placeholders/Bookings"));
-
+import RequireAuth from "./components/RequireAuth";
 
 const Loader = () => (
   <div className="flex items-center justify-center h-screen text-lg font-semibold">
@@ -38,7 +38,9 @@ function App() {
           <Route path="signup" element={<Signup />} />
 
           {/* Protected routes */}
-          <Route path="dash" element={<DashBoard />} />
+          <Route element={<RequireAuth />}>
+            <Route path="dash" element={<DashBoard />} />
+          </Route>
         </Route>
       </Routes>
     </Suspense>
