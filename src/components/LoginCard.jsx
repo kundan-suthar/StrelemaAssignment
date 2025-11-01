@@ -1,16 +1,56 @@
 
 import { useState } from 'react';
-import { Lock, Mail, Phone } from 'lucide-react';
-
+import { Lock, Phone } from 'lucide-react';
+import axios from '../api/axios';
+import { useAuth } from '../Context/useContext';
+import { useNavigate } from 'react-router';
+const LOGIN_URL = "/api/auth/login"
 const LoginCard = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(false);
+    const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
+
+    const { setAuth } = useAuth()
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Handle login logic here
-        console.log({ email, password, rememberMe });
+        try {
+            const response = await axios.post(LOGIN_URL,
+                JSON.stringify({
+                    phone: email, password
+                }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+
+                }
+            )
+            console.log(JSON.stringify(response?.data));
+            const accessToken = response?.data?.token
+            const user = response?.data?.user
+            setAuth({ user, accessToken })
+            setErrorMessage("")
+            setEmail("")
+            setPassword("")
+            navigate("/dash")
+        } catch (err) {
+            if (!err?.response) {
+                setErrorMessage("no response from server")
+            }
+            else if (err.response?.status == 400) {
+                setErrorMessage("missing username or password")
+            }
+            else if (err.response?.status == 401) {
+                setErrorMessage("Unauthorised")
+            } else {
+                setErrorMessage("Login Failed")
+            }
+
+        }
+        console.log({ email, password });
     };
 
     return (
@@ -18,6 +58,7 @@ const LoginCard = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 text-left mb-6">
                 Login
             </h2>
+            {errorMessage && <p>{errorMessage}</p>}
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                     <label
