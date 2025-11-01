@@ -9,16 +9,29 @@ const LoginCard = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate()
 
 
-    const { setAuth } = useAuth()
+    const { setAuth, setIsLoggedIn } = useAuth()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // Basic client-side validation
+        if (!email.trim()) {
+            setErrorMessage('Phone is required');
+            return;
+        }
+        if (!password) {
+            setErrorMessage('Password is required');
+            return;
+        }
+
         // Handle login logic here
         try {
+            setIsSubmitting(true);
+            setErrorMessage('');
             const response = await axios.post(LOGIN_URL,
                 JSON.stringify({
                     phone: email, password
@@ -32,11 +45,16 @@ const LoginCard = () => {
             const accessToken = response?.data?.token
             const user = response?.data?.user
             setAuth({ user, accessToken })
+            setIsLoggedIn(true);
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("accessToken", accessToken);
+
             setErrorMessage("")
             setEmail("")
             setPassword("")
             navigate("/dash")
         } catch (err) {
+            setIsSubmitting(false);
             if (!err?.response) {
                 setErrorMessage("no response from server")
             }
@@ -50,6 +68,7 @@ const LoginCard = () => {
             }
 
         }
+
         console.log({ email, password });
     };
 
@@ -58,7 +77,7 @@ const LoginCard = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 text-left mb-6">
                 Login
             </h2>
-            {errorMessage && <p>{errorMessage}</p>}
+            {errorMessage && <p className="text-sm text-red-600 mb-4" >{errorMessage}</p>}
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                     <label
@@ -75,8 +94,7 @@ const LoginCard = () => {
                             id="phone"
                             name="phone"
                             type="phone"
-                            autoComplete="email"
-                            required
+                            autoComplete="tel"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 sm:text-sm transition duration-150 ease-in-out"
@@ -101,7 +119,6 @@ const LoginCard = () => {
                             name="password"
                             type="password"
                             autoComplete="current-password"
-                            required
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 sm:text-sm transition duration-150 ease-in-out"
@@ -141,9 +158,10 @@ const LoginCard = () => {
                 <div>
                     <button
                         type="submit"
-                        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-transform transform hover:scale-105"
+                        disabled={isSubmitting}
+                        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-transform transform hover:scale-105 disabled:opacity-60"
                     >
-                        Login Now
+                        {isSubmitting ? 'Logging in...' : 'Login Now'}
                     </button>
                 </div>
             </form>

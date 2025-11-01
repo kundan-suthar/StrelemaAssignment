@@ -66,12 +66,12 @@ const EmployeeTable = () => {
         try {
             setLoading(true);
             setError(null);
-
+            let accessToken = auth.accessToken ? auth.accessToken : localStorage.getItem("accessToken")
             const response = await axios.get(
                 `${EMP_URL}?page=${currentPage}&limit=${itemsPerPage}`,
                 {
                     headers: {
-                        'Authorization': `Bearer ${auth.accessToken}`
+                        'Authorization': `Bearer ${accessToken}`
                     }
                 }
             );

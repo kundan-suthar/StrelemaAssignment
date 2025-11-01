@@ -2,11 +2,11 @@ import { useLocation, Navigate, Outlet } from "react-router";
 import { useAuth } from "../hooks/useContext";
 
 const RequireAuth = () => {
-    const { auth } = useAuth()
+    const { isLoggedIn, auth } = useAuth()
     const location = useLocation()
 
     return (
-        auth?.user
+        (auth?.user || isLoggedIn)
             ? <Outlet />
             : <Navigate to="/login" state={{ from: location }} replace />
     )
