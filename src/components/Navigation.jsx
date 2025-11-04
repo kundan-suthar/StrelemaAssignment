@@ -10,7 +10,7 @@ const Navigation = () => {
 
     const handleLogout = () => {
         setAuth(null); // clear auth context
-        localStorage.removeItem("auth"); // if you store it in localStorage
+        localStorage.removeItem("accessToken"); // if you store it in localStorage
         navigate("/");
     };
 
